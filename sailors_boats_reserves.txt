@@ -1,0 +1,89 @@
+-- Create sailors table
+CREATE TABLE sailors (
+  Sid NUMBER,
+  Sname VARCHAR2(50),
+  Rating NUMBER,
+  Age NUMBER,
+  PRIMARY KEY (Sid)
+);
+
+-- Insert values into sailors table
+INSERT INTO sailors (Sid, Sname, Rating, Age)
+VALUES (22, 'Dustin', 7, 45);
+INSERT INTO sailors (Sid, Sname, Rating, Age)
+VALUES (29, 'Brutus', 1, 33);
+INSERT INTO sailors (Sid, Sname, Rating, Age)
+VALUES (31, 'Lubber', 8, 55.5);
+INSERT INTO sailors (Sid, Sname, Rating, Age)
+VALUES (32, 'Andy', 8, 25.5);
+INSERT INTO sailors (Sid, Sname, Rating, Age)
+VALUES (58, 'Rusty', 10, 35);
+INSERT INTO sailors (Sid, Sname, Rating, Age)
+VALUES (64, 'Horatio', 7, 35);
+INSERT INTO sailors (Sid, Sname, Rating, Age)
+VALUES (71, 'Zorba', 10, 16);
+INSERT INTO sailors (Sid, Sname, Rating, Age)
+VALUES (74, 'Horatio', 9, 40);
+INSERT INTO sailors (Sid, Sname, Rating, Age)
+VALUES (85, 'Art', 3, 25.5);
+INSERT INTO sailors (Sid, Sname, Rating, Age)
+VALUES (95, 'Bob', 3, 63.5);
+
+-- Create boats table
+CREATE TABLE boats (
+  bid NUMBER,
+  bname VARCHAR2(50),
+  color VARCHAR2(50),
+  PRIMARY KEY (bid)
+);
+
+-- Insert values into boats table
+INSERT INTO boats (bid, bname, color)
+VALUES (101, 'Interlake', 'blue');
+INSERT INTO boats (bid, bname, color)
+VALUES (102, 'Interlake', 'red');
+INSERT INTO boats (bid, bname, color)
+VALUES (103, 'Clipper', 'green');
+INSERT INTO boats (bid, bname, color)
+VALUES (104, 'Marine', 'red');
+
+-- Create reserves table
+CREATE TABLE reserves (
+  sid NUMBER,
+  bid NUMBER,
+  day DATE,
+  PRIMARY KEY (sid, bid),
+  FOREIGN KEY (sid) REFERENCES sailors (Sid),
+  FOREIGN KEY (bid) REFERENCES boats (bid)
+);
+
+-- Insert values into reserves table
+INSERT INTO reserves (sid, bid, day)
+VALUES (22, 101, '10-OCT-1998');
+
+INSERT INTO reserves (sid, bid, day)
+VALUES (22, 102, '10-OCT-1998');
+
+INSERT INTO reserves (sid, bid, day)
+VALUES (22, 103, '08-OCT-1998');
+
+INSERT INTO reserves (sid, bid, day)
+VALUES (22, 104, '07-OCT-1998');
+
+INSERT INTO reserves (sid, bid, day)
+VALUES (31, 102, '10-NOV-1998');
+
+INSERT INTO reserves (sid, bid, day)
+VALUES (31, 103, '06-NOV-1998');
+
+INSERT INTO reserves (sid, bid, day)
+VALUES (31, 104, '12-NOV-1998');
+
+INSERT INTO reserves (sid, bid, day)
+VALUES (64, 101, '05-SEP-1998');
+
+INSERT INTO reserves (sid, bid, day)
+VALUES (64, 102, '08-SEP-1998');
+
+INSERT INTO reserves (sid, bid, day)
+VALUES (74, 103, '08-SEP-1998');
