@@ -1,0 +1,33 @@
+CREATE TABLE faculty 
+(  
+    id number(10) primary key, 
+    subject varchar2(20), 
+    department varchar2(20), 
+    branch varchar2(20)  
+)
+;
+
+CREATE TABLE log 
+(  
+    id number(10), 
+    new_department varchar2(20), 
+	new_subject varchar2(20), 
+    updated_by varchar2(20), 
+    updated_date date 
+)
+;
+
+CREATE OR REPLACE TRIGGER log_faculty_trigger 
+AFTER UPDATE ON faculty 
+FOR EACH ROW  
+DECLARE 
+    username varchar2(20); 
+BEGIN  
+    SELECT USER INTO username FROM dual; 
+    INSERT INTO log VALUES(:new.id,:new.department,:new.subject,username,sysdate); 
+END;
+
+INSERT INTO faculty VALUES (777,'AI','CSE','CV');
+UPDATE faculty 
+SET subject='DS' WHERE id=777;
+SELECT * FROM log;
