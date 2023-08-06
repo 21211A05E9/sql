@@ -1,0 +1,26 @@
+CREATE TABLE student (
+	id NUMBER(10),
+    name VARCHAR2(20) NOT NULL,
+    rank NUMBER(10),
+    CONSTRAINT student_rank_unique UNIQUE(rank) -- UNIQUE(id,name,rank) for multiple columns
+);
+DESC student;
+-- ALTER TABLE student MODIFY(rank UNIQUE);
+-- ALTER TABLE student MODIFY(rank NOT NULL);
+INSERT INTO student VALUES(777,'thor',7);
+INSERT INTO student VALUES(77,'loki',77);
+-- INSERT INTO student VALUES(77,'odin',7); -- for checking unique of rank
+-- ALTER TABLE student ADD CONSTRAINT some_name UNIQUE(name); -- duplicate keys found
+-- ALTER TABLE student ADD CONSTRAINT PK_ID2 PRIMARY KEY(id); -- PK_ID2 is convention
+-- ALTER TABLE student ADD CONSTRAINT some_name PRIMARY KEY(rank); -- table can have only one primary key 
+DESC student;
+SELECT * FROM student;
+
+ALTER TABLE student ENABLE CONSTRAINT student_rank_unique;
+SELECT * FROM user_constraints;
+ALTER TABLE student DISABLE CONSTRAINT student_rank_unique;
+SELECT * FROM user_constraints;
+ALTER TABLE student ADD CONSTRAINT student_name_unique UNIQUE(name);
+SELECT * FROM user_constraints;
+ALTER TABLE student DROP CONSTRAINT student_rank_unique;
+SELECT * FROM user_constraints;
