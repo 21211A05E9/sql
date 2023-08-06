@@ -23,3 +23,6 @@ BEGIN
 		:new.age:=18;  
 	END IF;  
 END;
+
+UPDATE staff SET name='x' WHERE email='gmail';
+SELECT * FROM staff;
