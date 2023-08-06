@@ -1,0 +1,22 @@
+CREATE TABLE student 
+(  
+    id varchar2(10) primary key,  
+    cgpa number(10),  
+    name varchar2(20), 
+    domain1 varchar2(20)  
+)
+;
+
+CREATE TABLE log 
+(  
+    id varchar2(10) primary key, 
+    domain1 varchar2(20)  
+)
+;
+
+CREATE OR REPLACE TRIGGER log_trigger  
+BEFORE DELETE ON student 
+FOR EACH ROW  
+BEGIN  
+    INSERT INTO log VALUES(:old.id,:old.domain1); 
+END;
