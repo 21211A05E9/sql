@@ -1,0 +1,25 @@
+CREATE TABLE staff 
+(  
+    id number(10) primary key,  
+    age number(10),  
+    name varchar2(20), 
+    salary number(10), 
+    email varchar2(20)  
+);
+INSERT INTO staff VALUES (1,10,'a',1000,'gmail');
+INSERT INTO staff VALUES (2,null,'b',10000,'yahoo');
+INSERT INTO staff VALUES (3,20,'c',3000,'hotmail');
+SELECT * FROM staff;
+;
+
+CREATE OR REPLACE TRIGGER age_salary_trigger  
+BEFORE UPDATE ON staff  
+FOR EACH ROW  
+BEGIN  
+	IF :new.salary<4000 THEN  
+		:new.salary:=6000;  
+	END IF;  
+	IF :new.age IS NULL THEN  
+		:new.age:=18;  
+	END IF;  
+END;
