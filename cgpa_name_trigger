@@ -1,0 +1,26 @@
+
+CREATE TABLE student  
+( 
+    id number(10) primary key, 
+    age number(10), 
+    name varchar2(20), 
+    cgpa number(8,2) 
+);
+INSERT INTO student VALUES (1,10,'Ronnie',8);
+INSERT INTO student VALUES (2,null,'Sunny',9);
+INSERT INTO student VALUES (3,20,null,10);
+INSERT INTO student VALUES (4,15,'Tom',5);
+SELECT * FROM student;
+;
+
+CREATE OR REPLACE TRIGGER cgpa_name_trigger 
+BEFORE INSERT ON student 
+FOR EACH ROW 
+BEGIN 
+	IF :new.cgpa<6 THEN 
+		:new.cgpa:=7; 
+	END IF; 
+	IF :new.name IS NULL THEN 
+		:new.name:='X'; 
+	END IF; 
+END;
