@@ -1,0 +1,19 @@
+DECLARE
+variable_name datatype;
+BEGIN
+variable_name := 10; --assigning a value to a variable
+variable_name := &variable_name; --for taking input from the user
+dbms_output.output_line('The value of the variable is ' || variable_name); --for printing the value of the variable, ||(concatenation) is same as , in python
+{IF condition THEN 
+ELSIF condition THEN 
+ELSE 
+END IF;}
+{LOOP
+EXIT WHEN condition;
+END LOOP;}
+{WHILE condition LOOP
+END LOOP;}
+{FOR I IN [REVERSE] upper_bound..lower_bound LOOP
+END LOOP}
+END;
+/
